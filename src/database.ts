@@ -11,10 +11,10 @@ import { adminLogin } from './admin/admin.model';
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
-      username: 'root',
-      password: '03466787660uU@',
-      database: 'student',
+      host: process.env.DB_HOST,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadModels: true,
       synchronize: true,
       
