@@ -9,7 +9,8 @@ export function LoggedInMiddleWare(req: any, res: Response, next: NextFunction) 
   try {
     const data = jwt.verify(req.cookies.token, 'secret')
     req.user = data;
-      next();
+    //bnc
+    next();
   } catch (err) {
     return res.status(401).send('Invalid token');
   }
