@@ -84,7 +84,7 @@ export class AdminCourse {
   async Logout(@Res() res: Response) {
     try {
       res.cookie("token", "");
-      return res.status(200).json("Register Logout");
+      return res.status(200).json("Admin Logout");
     } catch (error) {
       console.error("Error creating user:", error.message);
       throw new HttpException(
