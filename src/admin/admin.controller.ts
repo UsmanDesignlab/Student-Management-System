@@ -61,8 +61,8 @@ export class AdminCourse {
         }
         if (!result) {
           return res.status(500).json({ message: "Error comparing passwords" });
-        }else {
-          const payload: jwtPayload = { userId:one.id, loggedInAs: Roles.ADMIN }
+        } else {
+          const payload: jwtPayload = { userId: one.id, loggedInAs: Roles.ADMIN }
           console.log(payload.userId)
           const token = jwt.sign(payload, "secret", { expiresIn: "4h" });
 
@@ -84,7 +84,7 @@ export class AdminCourse {
   async Logout(@Res() res: Response) {
     try {
       res.cookie("token", "");
-      return res.status(200).json("Admin Logout");
+      return res.status(200).json("Logout Successfully");
     } catch (error) {
       console.error("Error creating user:", error.message);
       throw new HttpException(
@@ -107,7 +107,7 @@ export class AdminCourse {
       else {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt)
-        await this.AdminService.Update({password:hashedPassword},email)
+        await this.AdminService.Update({ password: hashedPassword }, email)
         let token = jwt.sign({ userId: one.id }, "secret", { expiresIn: "4h" })
         res.cookie("token", token)
         res.status(200).json({
